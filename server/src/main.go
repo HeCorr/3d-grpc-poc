@@ -56,9 +56,11 @@ func render(r RenderRequest) image.Image {
 	shader.SpecularPower = 100
 	context.Shader = shader
 
-	cube := f.NewCube()
-
-	context.DrawMesh(cube)
+	for _, o := range r.Objects {
+		mesh := o.Mesh
+		mesh.Transform(f.Translate(o.Location))
+		context.DrawMesh(&mesh)
+	}
 
 	fmt.Println(time.Since(start))
 
