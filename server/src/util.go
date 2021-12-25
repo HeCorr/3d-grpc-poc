@@ -18,3 +18,10 @@ func parseShape(shape string) (m f.Mesh) {
 	}
 	return m
 }
+
+func isVectorZero(v f.Vector) bool {
+	if v.X == 0 && v.Y == 0 && v.Z == 0 {
+		return true
+	}
+	return false
+}
