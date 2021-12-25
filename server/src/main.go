@@ -3,7 +3,7 @@ package main
 import f "github.com/fogleman/fauxgl"
 
 const (
-	scale  = 2    // optional supersampling
+	scale  = 1    // optional supersampling
 	width  = 1920 // output width in pixels
 	height = 1080 // output height in pixels
 	fovy   = 40   // vertical field of view in degrees
