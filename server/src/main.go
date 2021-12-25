@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"image"
 	"time"
 
 	f "github.com/fogleman/fauxgl"
@@ -25,6 +26,7 @@ var (
 )
 
 func main() {
+func render(r RenderRequest) image.Image {
 	start := time.Now()
 
 	context := f.NewContext(width*scale, height*scale)
@@ -48,6 +50,6 @@ func main() {
 
 	image := context.Image()
 	// image = resize.Resize(width, height, image, resize.Bilinear)
-
 	f.SavePNG("debug.png", image)
+	return image
 }
