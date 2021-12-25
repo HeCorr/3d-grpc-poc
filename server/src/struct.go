@@ -3,7 +3,7 @@ package main
 import f "github.com/fogleman/fauxgl"
 
 type Object struct {
-	Shape    string
+	Mesh     f.Mesh
 	Location f.Vector
 }
 

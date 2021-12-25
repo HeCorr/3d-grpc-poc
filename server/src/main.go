@@ -29,7 +29,7 @@ func main() {
 	render(RenderRequest{
 		Objects: []Object{
 			{
-				Shape: "Cube",
+				Mesh: *f.NewCube(),
 				Location: f.Vector{
 					X: 0,
 					Y: 0,
