@@ -20,5 +20,29 @@ var (
 )
 
 func main() {
+	start := time.Now()
 
+	context := f.NewContext(width*scale, height*scale)
+	context.ClearColor = f.HexColor("#3C3C3C") // bg color
+	context.ClearColorBuffer()
+
+	aspect := float64(width) / float64(height)
+	matrix := f.LookAt(eye, center, up).Perspective(fovy, aspect, near, far)
+	shader := f.NewPhongShader(matrix, light, eye)
+	shader.ObjectColor = color
+	shader.DiffuseColor = f.Gray(0.9) // object color
+	shader.SpecularColor = f.Gray(0.25)
+	shader.SpecularPower = 100
+	context.Shader = shader
+
+	cube := f.NewCube()
+
+	context.DrawMesh(cube)
+
+	fmt.Println(time.Since(start))
+
+	image := context.Image()
+	// image = resize.Resize(width, height, image, resize.Bilinear)
+
+	f.SavePNG("debug.png", image)
 }
