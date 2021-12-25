@@ -1,6 +1,11 @@
 package main
 
-import f "github.com/fogleman/fauxgl"
+import (
+	"fmt"
+	"time"
+
+	f "github.com/fogleman/fauxgl"
+)
 
 const (
 	scale  = 1    // optional supersampling
