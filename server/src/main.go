@@ -26,6 +26,20 @@ var (
 )
 
 func main() {
+	render(RenderRequest{
+		Objects: []Object{
+			{
+				Shape: "Cube",
+				Location: f.Vector{
+					X: 0,
+					Y: 0,
+					Z: 0,
+				},
+			},
+		},
+	})
+}
+
 func render(r RenderRequest) image.Image {
 	start := time.Now()
 
