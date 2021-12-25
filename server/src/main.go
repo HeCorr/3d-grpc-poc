@@ -57,8 +57,12 @@ func render(r RenderRequest) image.Image {
 	context.Shader = shader
 
 	for _, o := range r.Objects {
+		if isVectorZero(o.Scale) {
+			o.Scale = f.Vector{1, 1, 1}
+		}
 		mesh := o.Mesh
 		mesh.Transform(f.Translate(o.Location))
+		mesh.Transform(f.Scale(o.Scale))
 		context.DrawMesh(&mesh)
 	}
 
