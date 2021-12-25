@@ -36,6 +36,19 @@ func main() {
 					Z: 0,
 				},
 			},
+			{
+				Mesh: *f.NewPlane(),
+				Location: f.Vector{
+					X: 0,
+					Y: 0,
+					Z: -.5,
+				},
+				Scale: f.Vector{
+					X: 2,
+					Y: 2,
+					Z: 1,
+				},
+			},
 		},
 	})
 }
