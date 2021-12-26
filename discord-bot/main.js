@@ -1,7 +1,5 @@
 const config = require('./config.js');
-const Discord = require('discord.js');
 const { nodeLogger } = require('./utils/ready.js')
-
 const { Client, Intents } = require('discord.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -22,13 +20,12 @@ client.on('messageCreate', (message) => {
     // ignoring replied messages and only responding to direct pings ("@gRPC")
     if (message.mentions.has(client.user.id)) {
         if (message.content = "draw") {
-            message.channel.send('nino needs to add this')
+            // TODO: implement gRPC call
         }
     }
 })
 
 // iinitialize bot
-client.login(config.token)
-    .catch(e => {
-        console.log(`Failed to login: ${e}`)
-    })
+client.login(config.token).catch(e => {
+    console.log(`Failed to login: ${e}`)
+})

@@ -7,16 +7,11 @@
     "start": "nodemon main.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HeCorr/3d-grpc-poc.git"
+    "url": "https://github.com/HeCorr/3d-grpc-poc"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/HeCorr/3d-grpc-poc/issues"
-  },
-  "homepage": "https://github.com/HeCorr/3d-grpc-poc#readme",
+  "license": "MIT",
   "dependencies": {
     "discord.js": "^13.4.0",
     "hyperz-nodelogger": "^3.7.2",
