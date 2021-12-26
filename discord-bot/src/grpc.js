@@ -13,7 +13,7 @@ var packageDefinition = protoLoader.loadSync(
     });
 var renderer = grpc.loadPackageDefinition(packageDefinition).render_server;
 
-var client = new renderer.Renderer('localhost:1313', grpc.credentials.createInsecure());
+var client = new renderer.Renderer('localhost:5656', grpc.credentials.createInsecure());
 
 function requestRender(objects) {
     return new Promise((resolve, reject) => {
