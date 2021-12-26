@@ -1,4 +1,4 @@
-var PROTO_PATH = __dirname + '/../server/src/proto/render_server.proto';
+var PROTO_PATH = __dirname + '/../../server/src/proto/render_server.proto';
 
 var grpc = require('@grpc/grpc-js');
 var protoLoader = require('@grpc/proto-loader');
