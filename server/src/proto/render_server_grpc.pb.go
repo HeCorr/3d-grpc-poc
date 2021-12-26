@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RendererClient interface {
-	RequestRender(ctx context.Context, in *RenderRequest, opts ...grpc.CallOption) (*RenderReply, error)
+	RequestRender(ctx context.Context, in *RenderRequest, opts ...grpc.CallOption) (*RenderResponse, error)
 }
 
 type rendererClient struct {
@@ -29,8 +29,8 @@ func NewRendererClient(cc grpc.ClientConnInterface) RendererClient {
 	return &rendererClient{cc}
 }
 
-func (c *rendererClient) RequestRender(ctx context.Context, in *RenderRequest, opts ...grpc.CallOption) (*RenderReply, error) {
-	out := new(RenderReply)
+func (c *rendererClient) RequestRender(ctx context.Context, in *RenderRequest, opts ...grpc.CallOption) (*RenderResponse, error) {
+	out := new(RenderResponse)
 	err := c.cc.Invoke(ctx, "/render_server.Renderer/RequestRender", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (c *rendererClient) RequestRender(ctx context.Context, in *RenderRequest, o
 // All implementations must embed UnimplementedRendererServer
 // for forward compatibility
 type RendererServer interface {
-	RequestRender(context.Context, *RenderRequest) (*RenderReply, error)
+	RequestRender(context.Context, *RenderRequest) (*RenderResponse, error)
 	mustEmbedUnimplementedRendererServer()
 }
 
@@ -50,7 +50,7 @@ type RendererServer interface {
 type UnimplementedRendererServer struct {
 }
 
-func (UnimplementedRendererServer) RequestRender(context.Context, *RenderRequest) (*RenderReply, error) {
+func (UnimplementedRendererServer) RequestRender(context.Context, *RenderRequest) (*RenderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RequestRender not implemented")
 }
 func (UnimplementedRendererServer) mustEmbedUnimplementedRendererServer() {}

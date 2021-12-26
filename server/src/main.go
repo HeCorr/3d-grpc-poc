@@ -36,7 +36,7 @@ type requestServer struct {
 	pb.UnimplementedRendererServer
 }
 
-func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest) (resp *pb.RenderReply, err error) {
+func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest) (resp *pb.RenderResponse, err error) {
 	img := render(req)
 
 	buf := bytes.Buffer{}
@@ -46,7 +46,7 @@ func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest
 		return resp, err
 	}
 
-	return &pb.RenderReply{
+	return &pb.RenderResponse{
 		ImageBytes: buf.Bytes(),
 	}, nil
 }
