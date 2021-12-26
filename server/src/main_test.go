@@ -17,7 +17,7 @@ func TestGrpcClient(t *testing.T) {
 	}
 	defer file.Close()
 
-	conn, err := grpc.Dial("localhost:1313", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial("localhost:5656", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		t.Error(err)
 	}
