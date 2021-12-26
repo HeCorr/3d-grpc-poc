@@ -1,4 +1,3 @@
-const config = require('./config.js');
 const { nodeLogger } = require('./utils/ready.js');
 const { requestRender } = require('./grpc.js');
 const { Client, Intents } = require('discord.js');
@@ -47,6 +46,6 @@ client.on('messageCreate', async (message) => {
 })
 
 // iinitialize bot
-client.login(config.token).catch(e => {
+client.login(process.env.DISCORD_BOT_TOKEN).catch(e => {
     console.log(`Failed to login: ${e}`)
 })
