@@ -11,6 +11,7 @@ client.on('ready', () => {
     nodeLogger()
 });
 
+// listen to messages
 client.on('messageCreate', (message) => {
     // ignore pings from bots
     if (message.author.bot) return false;
@@ -20,29 +21,13 @@ client.on('messageCreate', (message) => {
 
     // ignoring replied messages and only responding to direct pings ("@gRPC")
     if (message.mentions.has(client.user.id)) {
-        if (message.content = "test") {
-            message.channel.send('test')
+        if (message.content = "draw") {
+            message.channel.send('nino needs to add this')
         }
     }
 })
 
-// client.on('messageCreate', (message) => {
-
-//         // ignore pings by other abots
-//         if (message.author.bot) return false
-    
-//         // ignore @everyone and @here
-//         if (message.content.includes("@here") || message.content.includes("@everyone")) return false
-    
-//         // hotfix for ignoring replied messages and only responding to direct pings ("@gRPC")
-//         if (message.mentions.has(client.user.id) && message.content.includes(client.user.id)) {
-            
-//             switch(message) {
-//                 case 'hey':
-//                     message.channel.send('Hello!');
-//                     break;
-//                 }
-//         }})
+// iinitialize bot
 client.login(config.token)
     .catch(e => {
         console.log(`Failed to login: ${e}`)
