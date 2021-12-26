@@ -83,8 +83,8 @@ func render(r *pb.RenderRequest) image.Image {
 	context.Shader = shader
 
 	for _, o := range r.Objects {
-		pos := f.V(float64(o.PosX), float64(o.PosY), float64(o.PosZ))
-		scale := f.V(float64(o.ScaleX), float64(o.ScaleY), float64(o.ScaleZ))
+		pos := v2v(o.Position)
+		scale := v2v(o.Scale)
 		if isVectorZero(scale) {
 			scale = f.Vector{1, 1, 1}
 		}
