@@ -89,8 +89,8 @@ func render(r *pb.RenderRequest) image.Image {
 			scale = f.V(1, 1, 1)
 		}
 		mesh := parseShape(o.Shape)
-		mesh.Transform(f.Translate(pos))
 		mesh.Transform(f.Scale(scale))
+		mesh.Transform(f.Translate(pos))
 		context.DrawMesh(&mesh)
 	}
 
