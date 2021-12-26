@@ -11,7 +11,7 @@ import (
 )
 
 func TestGrpcClient(t *testing.T) {
-	file, err := os.OpenFile("render.png", os.O_CREATE, os.ModePerm)
+	file, err := os.OpenFile("render.png", os.O_CREATE|os.O_TRUNC|os.O_WRONLY, os.ModePerm)
 	if err != nil {
 		t.Error(err)
 	}
