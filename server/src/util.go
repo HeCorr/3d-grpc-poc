@@ -24,6 +24,8 @@ func parseShape(shape string) (m f.Mesh) {
 		m.SmoothNormalsThreshold(1)
 	case "plane":
 		m = *f.NewPlane()
+	case "icosahedron", "ico", "icosphere":
+		m = *f.NewIcosahedron()
 	}
 	return m
 }

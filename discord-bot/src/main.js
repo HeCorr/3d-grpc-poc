@@ -21,7 +21,7 @@ client.on('messageCreate', async (message) => {
     // ignoring replied messages and only responding to direct pings ("@gRPC")
     if (message.mentions.has(client.user.id)) {
         if (message.content.trim().startsWith('<') && message.content.trim().endsWith('>')) {
-            await message.reply({ content: "Ping me again including a list of shapes to draw and their position and scale, one on each line.\nSupported shapes: `cube`, `sphere`, `plane`, `cylinder`.\nSyntax: `shape(xPos, yPos, zPos)` or `shape(xPos, yPos, zPos, xScale, yScale, zScale)` to specify a scale.\nExample (cube with a cone on top):\n```cube(0, 0, 0)\ncone(0, 0, 1, 0.5, 0.5, 1)\n```" })
+            await message.reply({ content: "Ping me again including a list of shapes to draw and their position and scale, one on each line.\nSupported shapes: `cube`, `sphere`, `plane`, `cylinder`, `icosahedron`.\nSyntax: `shape(xPos, yPos, zPos)` or `shape(xPos, yPos, zPos, xScale, yScale, zScale)` to specify a scale.\nExample (cube with a cone on top):\n```cube(0, 0, 0)\ncone(0, 0, 1, 0.5, 0.5, 1)\n```" })
             return
         }
         try {
