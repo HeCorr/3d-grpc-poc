@@ -11,17 +11,17 @@ import (
 )
 
 func TestGrpcClient(t *testing.T) {
-	file, err := os.OpenFile("render.png", os.O_CREATE|os.O_TRUNC|os.O_WRONLY, os.ModePerm)
-	if err != nil {
-		t.Error(err)
-	}
-	defer file.Close()
-
 	conn, err := grpc.Dial("localhost:5656", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		t.Error(err)
 	}
 	defer conn.Close()
+
+	file, err := os.OpenFile("render.png", os.O_CREATE|os.O_TRUNC|os.O_WRONLY, os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+	defer file.Close()
 
 	c := pb.NewRendererClient(conn)
 
