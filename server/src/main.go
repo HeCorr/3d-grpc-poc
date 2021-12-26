@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"image"
+	pb "server/src/proto"
 	"time"
 
 	f "github.com/fogleman/fauxgl"
@@ -53,7 +54,7 @@ func main() {
 	})
 }
 
-func render(r RenderRequest) image.Image {
+func render(r pb.RenderRequest) image.Image {
 	start := time.Now()
 
 	context := f.NewContext(width*scale, height*scale)
@@ -70,12 +71,14 @@ func render(r RenderRequest) image.Image {
 	context.Shader = shader
 
 	for _, o := range r.Objects {
-		if isVectorZero(o.Scale) {
-			o.Scale = f.Vector{1, 1, 1}
+		pos := f.V(float64(o.PosX), float64(o.PosY), float64(o.PosZ))
+		scale := f.V(float64(o.ScaleX), float64(o.ScaleY), float64(o.ScaleZ))
+		if isVectorZero(scale) {
+			scale = f.Vector{1, 1, 1}
 		}
-		mesh := o.Mesh
-		mesh.Transform(f.Translate(o.Location))
-		mesh.Transform(f.Scale(o.Scale))
+		mesh := parseShape(o.Shape)
+		mesh.Transform(f.Translate(pos))
+		mesh.Transform(f.Scale(scale))
 		context.DrawMesh(&mesh)
 	}
 
