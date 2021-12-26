@@ -16,6 +16,9 @@ func parseShape(shape string) (m f.Mesh) {
 	case "sphere", "ball":
 		m = *f.NewSphere(4)
 		m.SmoothNormals()
+	case "cylinder", "cilinder":
+		m = *f.NewCylinder(4, true)
+		m.SmoothNormalsThreshold(1)
 	case "plane":
 		m = *f.NewPlane()
 	}
