@@ -86,7 +86,7 @@ func render(r *pb.RenderRequest) image.Image {
 		pos := v2v(o.Position)
 		scale := v2v(o.Scale)
 		if isVectorZero(scale) {
-			scale = f.Vector{1, 1, 1}
+			scale = f.V(1, 1, 1)
 		}
 		mesh := parseShape(o.Shape)
 		mesh.Transform(f.Translate(pos))
