@@ -1,8 +1,9 @@
-const validateRegex = /^[a-zA-z]+\([+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+\);?$/
+const validateRegex3 = /^[a-zA-z]+\([+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+\);?$/
+const validateRegex6 = /^[a-zA-z]+\([+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+\);?$/
 const parseRegex = /^(\w+)\((.*)\)/
 
 function validateInstruction(inst, line) {
-    if (!validateRegex.test(inst)) {
+    if (!validateRegex3.test(inst) && !validateRegex6.test(inst)) {
         throw `Invalid instruction on line ${line}`
     }
 }
@@ -18,9 +19,9 @@ function parseInstruction(inst) {
             z: floatValues[2],
         },
         scale: {
-            x: floatValues[3],
-            y: floatValues[4],
-            z: floatValues[5],
+            x: floatValues.length == 6 ? floatValues[3] : 1,
+            y: floatValues.length == 6 ? floatValues[4] : 1,
+            z: floatValues.length == 6 ? floatValues[5] : 1,
         }
     }
 }
