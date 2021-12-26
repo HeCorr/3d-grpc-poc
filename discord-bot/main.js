@@ -1,7 +1,8 @@
 const config = require('./config.js');
-const { nodeLogger } = require('./utils/ready.js')
+const { nodeLogger } = require('./utils/ready.js');
 const { requestRender } = require('./grpc.js');
 const { Client, Intents } = require('discord.js');
+const { validateInstruction, parseInstruction } = require('./parser.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -20,20 +21,27 @@ client.on('messageCreate', async (message) => {
 
     // ignoring replied messages and only responding to direct pings ("@gRPC")
     if (message.mentions.has(client.user.id)) {
-        if (message.content = "draw") {
-            try {
-                const imageBytes = await requestRender()
-                const imageData = Buffer.from(imageBytes);
-                message.reply({
-                    files: [
-                        { attachment: imageData, name: "render.png" }
-                    ]
-                })
-            } catch (e) {
-                console.error(e);
-                message.reply({ content: "error: " + e })
-            }
+        try {
+            const filtered = message.content.split('>')[1].trim()
+            const instructions = filtered.split('\n')
+            let instrQueue = []
 
+            instructions.forEach((inst, i) => {
+                validateInstruction(inst, i+1);
+                instrQueue.push(parseInstruction(inst))
+            })
+
+            const imageBytes = await requestRender(instrQueue)
+            const imageData = Buffer.from(imageBytes);
+            
+            message.reply({
+                files: [
+                    { attachment: imageData, name: "render.png" }
+                ]
+            })
+        } catch (e) {
+            console.error(e);
+            await message.reply({ content: "error: " + e })
         }
     }
 })
