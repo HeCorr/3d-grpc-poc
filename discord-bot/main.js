@@ -1,5 +1,6 @@
 const config = require('./config.js');
 const { nodeLogger } = require('./utils/ready.js')
+const { requestRender } = require('./grpc.js');
 const { Client, Intents } = require('discord.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -10,7 +11,7 @@ client.on('ready', () => {
 });
 
 // listen to messages
-client.on('messageCreate', (message) => {
+client.on('messageCreate', async (message) => {
     // ignore pings from bots
     if (message.author.bot) return false;
 
@@ -20,7 +21,19 @@ client.on('messageCreate', (message) => {
     // ignoring replied messages and only responding to direct pings ("@gRPC")
     if (message.mentions.has(client.user.id)) {
         if (message.content = "draw") {
-            // TODO: implement gRPC call
+            try {
+                const imageBytes = await requestRender()
+                const imageData = Buffer.from(imageBytes);
+                message.reply({
+                    files: [
+                        { attachment: imageData, name: "render.png" }
+                    ]
+                })
+            } catch (e) {
+                console.error(e);
+                message.reply({ content: "error: " + e })
+            }
+
         }
     }
 })
