@@ -20,19 +20,23 @@ client.on('messageCreate', async (message) => {
 
     // ignoring replied messages and only responding to direct pings ("@gRPC")
     if (message.mentions.has(client.user.id)) {
+        if (message.content.trim().startsWith('<') && message.content.trim().endsWith('>')) {
+            await message.reply({ content: "Ping me again including a list of shapes to draw and their position and scale, one on each line.\nSupported shapes: `cube`, `sphere`, `plane`, `cylinder`.\nSyntax: `shape(xPos, yPos, zPos)` or `shape(xPos, yPos, zPos, xScale, yScale, zScale)` to specify a scale.\nExample (cube with a cone on top):\n```cube(0, 0, 0)\ncone(0, 0, 1, 0.5, 0.5, 1)\n```" })
+            return
+        }
         try {
             const filtered = message.content.split('>')[1].trim()
             const instructions = filtered.split('\n')
             let instrQueue = []
 
             instructions.forEach((inst, i) => {
-                validateInstruction(inst, i+1);
+                validateInstruction(inst, i + 1);
                 instrQueue.push(parseInstruction(inst))
             })
 
             const imageBytes = await requestRender(instrQueue)
             const imageData = Buffer.from(imageBytes);
-            
+
             message.reply({
                 files: [
                     { attachment: imageData, name: "render.png" }
