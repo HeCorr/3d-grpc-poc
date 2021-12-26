@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"image"
+	"image/png"
 	"log"
 	"net"
 	pb "server/src/proto"
@@ -35,9 +37,17 @@ type requestServer struct {
 }
 
 func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest) (resp *pb.RenderReply, err error) {
+	img := render(req)
+
+	buf := bytes.Buffer{}
+
+	err = png.Encode(&buf, img)
+	if err != nil {
+		return resp, err
+	}
 
 	return &pb.RenderReply{
-		ImageBytes: []byte{},
+		ImageBytes: buf.Bytes(),
 	}, nil
 }
 
