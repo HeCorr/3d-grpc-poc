@@ -3,6 +3,8 @@ package main
 import (
 	"strings"
 
+	pb "server/src/proto"
+
 	f "github.com/fogleman/fauxgl"
 )
 
@@ -24,4 +26,12 @@ func isVectorZero(v f.Vector) bool {
 		return true
 	}
 	return false
+}
+
+// pb.Vector to f.Vector
+func v2v(v1 *pb.Vector) (v2 f.Vector) {
+	v2.X = v1.X
+	v2.Y = v1.Y
+	v2.Z = v1.Z
+	return
 }
