@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"image"
 	"log"
@@ -32,6 +33,14 @@ var (
 type requestServer struct {
 	pb.UnimplementedRendererServer
 }
+
+func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest) (resp *pb.RenderReply, err error) {
+
+	return &pb.RenderReply{
+		ImageBytes: []byte{},
+	}, nil
+}
+
 func main() {
 
 	l, err := net.Listen("tcp", "localhost:1313")
