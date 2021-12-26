@@ -3,4 +3,4 @@ A POC of a Discord.js bot that sends 3D rendering requests to a Go server throug
 
 
 ## Project status
-Far from done
+It can render stuff but that's about it
