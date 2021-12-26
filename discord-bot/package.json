@@ -1,0 +1,20 @@
+{
+  "name": "3d-grpc-poc",
+  "version": "1.0.0",
+  "description": "A POC of a Discord.js bot that sends 3D rendering requests to a Go server through gRPC and replies with the generated image",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "url": "https://github.com/HeCorr/3d-grpc-poc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^13.4.0",
+    "hyperz-nodelogger": "^3.7.2",
+    "nodemon": "^2.0.15"
+  }
+}
