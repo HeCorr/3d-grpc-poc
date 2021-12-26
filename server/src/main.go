@@ -3,10 +3,13 @@ package main
 import (
 	"fmt"
 	"image"
+	"log"
+	"net"
 	pb "server/src/proto"
 	"time"
 
 	f "github.com/fogleman/fauxgl"
+	"google.golang.org/grpc"
 )
 
 const (
@@ -26,32 +29,22 @@ var (
 	color  = f.HexColor("#8E9092")       // object color
 )
 
+type requestServer struct {
+	pb.UnimplementedRendererServer
+}
 func main() {
-	render(RenderRequest{
-		Objects: []Object{
-			{
-				Mesh: *f.NewCube(),
-				Location: f.Vector{
-					X: 0,
-					Y: 0,
-					Z: 0,
-				},
-			},
-			{
-				Mesh: *f.NewPlane(),
-				Location: f.Vector{
-					X: 0,
-					Y: 0,
-					Z: -.5,
-				},
-				Scale: f.Vector{
-					X: 2,
-					Y: 2,
-					Z: 1,
-				},
-			},
-		},
-	})
+
+	l, err := net.Listen("tcp", "localhost:1313")
+	if err != nil {
+		log.Fatal(err)
+	}
+	s := grpc.NewServer()
+	pb.RegisterRendererServer(s, &requestServer{})
+
+	log.Printf("server listening at %v", l.Addr())
+	if err := s.Serve(l); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }
 
 func render(r *pb.RenderRequest) image.Image {
