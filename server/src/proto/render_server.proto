@@ -9,18 +9,21 @@ service Renderer {
 }
 
 message RenderRequest {
-    message Object {
-        string shape = 1;
-        float posX = 2;
-        float posY = 3;
-        float posZ = 4;
-        float scaleX = 5;
-        float scaleY = 6;
-        float scaleZ = 7;
-    }
     repeated Object objects = 1;
 }
 
 message RenderReply {
     bytes imageBytes = 1;
+}
+
+message Object {
+    string shape = 1;
+    Vector position = 2;
+    Vector scale = 3;
+}
+
+message Vector {
+    double x = 1;
+    double y = 2;
+    double z = 3;
 }
