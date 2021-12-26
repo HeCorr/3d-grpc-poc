@@ -6,6 +6,11 @@ silent: true
 
 dotenv: ['.env']
 
+includes:
+  go:
+    taskfile: server/Taskfile.yml
+    dir: server
+
 tasks:
   server:
     ignore_error: true
