@@ -54,7 +54,7 @@ func main() {
 	})
 }
 
-func render(r pb.RenderRequest) image.Image {
+func render(r *pb.RenderRequest) image.Image {
 	start := time.Now()
 
 	context := f.NewContext(width*scale, height*scale)
