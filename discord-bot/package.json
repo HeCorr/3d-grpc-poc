@@ -13,6 +13,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@grpc/grpc-js": "^1.4.5",
+    "@grpc/proto-loader": "^0.6.7",
     "discord.js": "^13.4.0",
     "hyperz-nodelogger": "^3.7.2",
     "nodemon": "^2.0.15"
