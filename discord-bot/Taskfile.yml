@@ -11,7 +11,7 @@ tasks:
       - rm render_server.proto
   docker-run:
     cmds:
-      - docker run --rm -ti --name 3d-grpc-bot 3d-grpc-bot
+      - docker run --rm -tid --name 3d-grpc-bot --network=3d-grpc-net --env-file=../.env 3d-grpc-bot
   docker-stop:
     ignore_error: true
     cmds:
