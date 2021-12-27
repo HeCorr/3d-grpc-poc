@@ -28,6 +28,9 @@ tasks:
       - yarn start
   docker-deploy:
     cmds:
+      - echo "Attempting to create network..."
+      - cmd: docker network create 3d-grpc-net
+        ignore_error: true
       - task: go:docker-deploy
       - task: bot:docker-deploy
       - echo "Deploy complete!"
