@@ -97,5 +97,5 @@ var Renderer_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "src/proto/render_server.proto",
+	Metadata: "render_server.proto",
 }
