@@ -5,6 +5,16 @@ version: '3'
 silent: true
 
 tasks:
+  docker-build:
+    cmds:
+      - docker build --no-cache -t 3d-grpc-server .
+  docker-run:
+    cmds:
+      - docker run --rm -tid --name 3d-grpc-server 3d-grpc-server
+  docker-deploy:
+    cmds:
+      - task: docker-build
+      - task: docker-run
   protoc:
     cmds:
       - protoc --go_out=. --go-grpc_out=. --proto_path ../proto render_server.proto
