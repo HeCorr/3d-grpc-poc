@@ -26,3 +26,7 @@ tasks:
     cmds:
       - yarn install
       - yarn start
+  docker-deploy:
+    cmds:
+      - task: go:docker-deploy
+      - task: bot:docker-deploy
