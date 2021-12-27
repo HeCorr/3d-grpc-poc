@@ -1,7 +1,8 @@
-var PROTO_PATH = __dirname + '/../../proto/render_server.proto';
-
 var grpc = require('@grpc/grpc-js');
 var protoLoader = require('@grpc/proto-loader');
+
+// TODO: fix not working in Docker
+var PROTO_PATH = __dirname + '/../../proto/render_server.proto';
 var packageDefinition = protoLoader.loadSync(
     PROTO_PATH,
     {
