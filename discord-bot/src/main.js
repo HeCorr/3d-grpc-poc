@@ -39,10 +39,12 @@ client.on('messageCreate', async (message) => {
                 instrQueue.push(parseInstruction(inst))
             })
 
-            const imageBytes = await requestRender(instrQueue)
+            // yes, I know this looks weird. no, I don't care. it works.
+            const [imageBytes, renderTime] = await requestRender(instrQueue)
             const imageData = Buffer.from(imageBytes);
 
             message.reply({
+                content: '`Render time: ' + renderTime + '`',
                 files: [
                     { attachment: imageData, name: "render.png" }
                 ]

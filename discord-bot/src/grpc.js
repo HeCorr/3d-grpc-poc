@@ -21,7 +21,7 @@ function requestRender(objects) {
             objects: objects
         }, (err, resp) => {
             if (err) reject(err);
-            resolve(resp.imageBytes)
+            resolve([resp.imageBytes, resp.renderTime])
         })
     })
 }
