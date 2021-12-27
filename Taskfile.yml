@@ -30,3 +30,4 @@ tasks:
     cmds:
       - task: go:docker-deploy
       - task: bot:docker-deploy
+      - echo "Deploy complete!"

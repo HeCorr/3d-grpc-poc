@@ -5,16 +5,19 @@ version: '3'
 tasks:
   docker-build:
     cmds:
+      - echo "Building bot image..."
       - cp ../proto/render_server.proto .
       - cmd: docker build -t 3d-grpc-bot .
         ignore_error: true
       - rm render_server.proto
   docker-run:
     cmds:
+      - echo "Starting bot container..."
       - docker run --rm -tid --name 3d-grpc-bot --network=3d-grpc-net --env-file=../.env 3d-grpc-bot
   docker-stop:
     ignore_error: true
     cmds:
+      - echo "Stopping bot container if it's running..."
       - docker stop 3d-grpc-bot
   docker-deploy:
     cmds:

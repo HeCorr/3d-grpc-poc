@@ -7,13 +7,16 @@ silent: true
 tasks:
   docker-build:
     cmds:
+      - echo "Building server image..."
       - docker build -t 3d-grpc-server .
   docker-run:
     cmds:
+      - echo "Starting server container..."
       - docker run --rm -tid --name 3d-grpc-server --network=3d-grpc-net 3d-grpc-server
   docker-stop:
     ignore_error: true
     cmds:
+      - echo "Stopping server container if it's running..."
       - docker stop 3d-grpc-server
   docker-deploy:
     cmds:
@@ -22,4 +25,6 @@ tasks:
       - task: docker-run
   protoc:
     cmds:
+      - echo "Generating pb files from proto file..."
       - protoc --go_out=. --go-grpc_out=. --proto_path ../proto render_server.proto
+      - echo "Done!"
