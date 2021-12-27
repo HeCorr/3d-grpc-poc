@@ -5,7 +5,10 @@ version: '3'
 tasks:
   docker-build:
     cmds:
-      - docker build -t 3d-grpc-bot .
+      - cp ../proto/render_server.proto .
+      - cmd: docker build -t 3d-grpc-bot .
+        ignore_error: true
+      - rm render_server.proto
   docker-run:
     cmds:
       - docker run --rm -ti --name 3d-grpc-bot 3d-grpc-bot
