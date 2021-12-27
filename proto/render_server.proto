@@ -14,6 +14,7 @@ message RenderRequest {
 
 message RenderResponse {
     bytes imageBytes = 1;
+    string renderTime = 2;
 }
 
 message Object {
