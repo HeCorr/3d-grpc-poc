@@ -1,10 +1,10 @@
 FROM golang:1.16-alpine as build
-ENV GO111MODULE=on
 WORKDIR /build
+ENV GO111MODULE=on
 COPY go.mod .
 COPY go.sum .
-COPY src ./src
 RUN go mod download -x
+COPY src ./src
 RUN CGO_ENABLED=0 go build -o /build/server -v ./src
 
 FROM scratch
