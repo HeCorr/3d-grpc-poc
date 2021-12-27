@@ -1,0 +1,15 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  docker-build:
+    cmds:
+      - docker build -t 3d-grpc-bot .
+  docker-run:
+    cmds:
+      - docker run --rm -ti --name 3d-grpc-bot 3d-grpc-bot
+  docker-deploy:
+    cmds:
+      - task: docker-build
+      - task: docker-run
