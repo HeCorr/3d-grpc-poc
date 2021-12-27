@@ -7,7 +7,7 @@ silent: true
 tasks:
   docker-build:
     cmds:
-      - docker build --no-cache -t 3d-grpc-server .
+      - docker build -t 3d-grpc-server .
   docker-run:
     cmds:
       - docker run --rm -tid --name 3d-grpc-server 3d-grpc-server
