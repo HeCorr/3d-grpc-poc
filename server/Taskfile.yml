@@ -11,8 +11,13 @@ tasks:
   docker-run:
     cmds:
       - docker run --rm -tid --name 3d-grpc-server 3d-grpc-server
+  docker-stop:
+    ignore_error: true
+    cmds:
+      - docker stop 3d-grpc-server
   docker-deploy:
     cmds:
+      - task: docker-stop
       - task: docker-build
       - task: docker-run
   protoc:

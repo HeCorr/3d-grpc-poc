@@ -12,7 +12,12 @@ tasks:
   docker-run:
     cmds:
       - docker run --rm -ti --name 3d-grpc-bot 3d-grpc-bot
+  docker-stop:
+    ignore_error: true
+    cmds:
+      - docker stop 3d-grpc-bot
   docker-deploy:
     cmds:
+      - task: docker-stop
       - task: docker-build
       - task: docker-run
