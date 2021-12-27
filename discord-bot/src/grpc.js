@@ -21,7 +21,8 @@ function requestRender(objects) {
         client.RequestRender({
             objects: objects
         }, (err, resp) => {
-            if (err) reject(err);
+            if (err) return reject(err);
+            if (!resp) return reject("empty response");
             resolve([resp.imageBytes, resp.renderTime])
         })
     })
