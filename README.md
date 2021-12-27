@@ -10,3 +10,4 @@ If you wish to invite the bot, click [here](https://discord.com/api/oauth2/autho
 ## TODO's
 - [ ] Add comments to the code
 - [ ] Dockerize the server and the bot
+- [ ] Include render time in messages
