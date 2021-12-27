@@ -53,7 +53,7 @@ func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest
 
 func main() {
 
-	l, err := net.Listen("tcp", "localhost:5656")
+	l, err := net.Listen("tcp", ":5656")
 	if err != nil {
 		log.Fatal(err)
 	}
