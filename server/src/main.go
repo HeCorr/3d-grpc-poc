@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"context"
-	"fmt"
 	"image"
 	"image/png"
 	"log"
@@ -37,7 +36,7 @@ type requestServer struct {
 }
 
 func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest) (resp *pb.RenderResponse, err error) {
-	img := render(req)
+	img, rTime := render(req)
 
 	buf := bytes.Buffer{}
 
@@ -48,6 +47,7 @@ func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest
 
 	return &pb.RenderResponse{
 		ImageBytes: buf.Bytes(),
+		RenderTime: rTime,
 	}, nil
 }
 
@@ -66,7 +66,7 @@ func main() {
 	}
 }
 
-func render(r *pb.RenderRequest) image.Image {
+func render(r *pb.RenderRequest) (image.Image, string) {
 	start := time.Now()
 
 	context := f.NewContext(width*scale, height*scale)
@@ -94,10 +94,8 @@ func render(r *pb.RenderRequest) image.Image {
 		context.DrawMesh(&mesh)
 	}
 
-	fmt.Println(time.Since(start))
-
 	image := context.Image()
 	// image = resize.Resize(width, height, image, resize.Bilinear)
-	f.SavePNG("debug.png", image)
-	return image
+	// f.SavePNG("debug.png", image)
+	return image, time.Since(start).String()
 }
