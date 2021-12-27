@@ -3,7 +3,7 @@ const { requestRender } = require('./grpc.js');
 const { Client, Intents } = require('discord.js');
 const { validateInstruction, parseInstruction } = require('./parser.js');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES], partials: ['CHANNEL'] });
 
 // on bot ready, logs banner
 client.on('ready', () => {
