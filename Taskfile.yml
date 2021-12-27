@@ -10,6 +10,9 @@ includes:
   go:
     taskfile: server/Taskfile.yml
     dir: server
+  bot:
+    taskfile: discord-bot/Taskfile.yml
+    dir: discord-bot
 
 tasks:
   server:
