@@ -35,6 +35,9 @@ client.on('messageCreate', async (message) => {
             let instrQueue = []
 
             instructions.forEach((inst, i) => {
+                if (inst.startsWith("//") || inst.startsWith("#")) {
+                    return
+                }
                 validateInstruction(inst, i + 1);
                 instrQueue.push(parseInstruction(inst))
             })
