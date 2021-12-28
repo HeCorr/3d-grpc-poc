@@ -566,15 +566,6 @@ http-cache-semantics@^4.0.0:
   resolved "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz#49e91c5cbf36c9b94bcfcd71c23d5249ec74e390"
   integrity sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==
 
-hyperz-nodelogger@^3.7.2:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/hyperz-nodelogger/-/hyperz-nodelogger-3.7.2.tgz#c74a6615cde0e17aed423152c0ffa21c5924d627"
-  integrity sha512-xIJk11InduHSzWN0Ai8iPhqhUlC00UuOAmdQyEjOuhKc0IhHliyYPYgY0jfcOe+59IVpx8gphpd1wP/2h12F1A==
-  dependencies:
-    carden "^4.0.0"
-    chalk "^2.4.2"
-    figlet "^1.5.0"
-
 ignore-by-default@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ignore-by-default/-/ignore-by-default-1.0.1.tgz#48ca6d72f6c6a3af00a9ad4ae6876be3889e2b09"
@@ -817,6 +808,15 @@ package-json@^6.3.0:
     registry-auth-token "^4.0.0"
     registry-url "^5.0.0"
     semver "^6.2.0"
+
+phx-nodelogger@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/phx-nodelogger/-/phx-nodelogger-1.0.0.tgz#a7064a949cd5e5f61ca6204007311d65920fca82"
+  integrity sha512-Hs+VRss8RmM+M2FtpWg4yWCgg72F5tIewQG4+fsEJpob4EOVuzZ47kK9aF525vv94W0/dektoqJcZGOoysgfEw==
+  dependencies:
+    carden "^4.0.0"
+    chalk "^2.4.2"
+    figlet "^1.5.0"
 
 picomatch@^2.0.4, picomatch@^2.2.1:
   version "2.3.0"
