@@ -26,4 +26,4 @@ function parseInstruction(inst) {
     }
 }
 
-module.exports = { validateInstruction, parseInstruction };
+module.exports = { validateInstruction, parseInstruction }

@@ -1,19 +1,19 @@
-const { nodeLogger } = require('./utils/ready.js');
-const { requestRender } = require('./grpc.js');
-const { Client, Intents } = require('discord.js');
-const { validateInstruction, parseInstruction } = require('./parser.js');
+const { nodeLogger } = require('./utils/ready.js')
+const { requestRender } = require('./grpc.js')
+const { Client, Intents } = require('discord.js')
+const { validateInstruction, parseInstruction } = require('./parser.js')
 
-const client = new Client({ intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES], partials: ['CHANNEL'] });
+const client = new Client({ intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES], partials: ['CHANNEL'] })
 
 // on bot ready, logs banner
 client.on('ready', () => {
     nodeLogger()
-});
+})
 
 // listen to messages
 client.on('messageCreate', async (message) => {
     // ignore pings from bots
-    if (message.author.bot) return false;
+    if (message.author.bot) return false
 
     // ignore @everyone and @here
     if (message.content.includes("@here") || message.content.includes("@everyone")) return false
@@ -38,13 +38,13 @@ client.on('messageCreate', async (message) => {
                 if (inst.startsWith("//") || inst.startsWith("#")) {
                     return
                 }
-                validateInstruction(inst, i + 1);
+                validateInstruction(inst, i + 1)
                 instrQueue.push(parseInstruction(inst))
             })
 
             // yes, I know this looks weird. no, I don't care. it works.
             const [imageBytes, renderTime] = await requestRender(instrQueue)
-            const imageData = Buffer.from(imageBytes);
+            const imageData = Buffer.from(imageBytes)
 
             message.reply({
                 content: '`Render time: ' + renderTime + '`',
@@ -53,7 +53,7 @@ client.on('messageCreate', async (message) => {
                 ]
             })
         } catch (e) {
-            console.error(e);
+            console.error(e)
             if (message.channel.type == 'DM') {
                 await message.reply({ content: `Error: ${e}.\nTry saying 'help'.` })
             } else {
