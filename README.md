@@ -14,5 +14,5 @@ Fogleman's awesome [FauxGL renderer](https://github.com/fogleman/fauxgl)
 
 ## TODO's
 - [ ] Add comments to the code
-- [ ] Dockerize the server and the bot
+- [x] Dockerize the server and the bot
 - [x] Include render time in messages
