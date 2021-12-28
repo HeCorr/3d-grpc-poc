@@ -8,6 +8,7 @@ import (
 	f "github.com/fogleman/fauxgl"
 )
 
+// parses shape into a FauxGL Mesh
 func parseShape(shape string) (m f.Mesh) {
 	shape = strings.ToLower(shape)
 	switch shape {
@@ -30,6 +31,7 @@ func parseShape(shape string) (m f.Mesh) {
 	return m
 }
 
+// returns true if vector is {0, 0, 0}
 func isVectorZero(v f.Vector) bool {
 	if v.X == 0 && v.Y == 0 && v.Z == 0 {
 		return true
@@ -37,7 +39,7 @@ func isVectorZero(v f.Vector) bool {
 	return false
 }
 
-// pb.Vector to f.Vector
+// pb.Vector to f.Vector converter
 func v2v(v1 *pb.Vector) (v2 f.Vector) {
 	v2.X = v1.X
 	v2.Y = v1.Y

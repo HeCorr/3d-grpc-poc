@@ -35,7 +35,9 @@ type requestServer struct {
 	pb.UnimplementedRendererServer
 }
 
+// gRPC RequestRender() function
 func (s *requestServer) RequestRender(ctx context.Context, req *pb.RenderRequest) (resp *pb.RenderResponse, err error) {
+	// render image
 	img, rTime := render(req)
 
 	buf := bytes.Buffer{}
@@ -66,13 +68,16 @@ func main() {
 	}
 }
 
+// renders image from request
 func render(r *pb.RenderRequest) (image.Image, string) {
 	start := time.Now()
 
+	// create rendering context
 	context := f.NewContext(width*scale, height*scale)
 	context.ClearColor = f.HexColor("#3C3C3C") // bg color
 	context.ClearColorBuffer()
 
+	// set some options such as object material, etc
 	aspect := float64(width) / float64(height)
 	matrix := f.LookAt(eye, center, up).Perspective(fovy, aspect, near, far)
 	shader := f.NewPhongShader(matrix, light, eye)
@@ -82,6 +87,7 @@ func render(r *pb.RenderRequest) (image.Image, string) {
 	shader.SpecularPower = 100
 	context.Shader = shader
 
+	// loops through objects and draw them to the context
 	for _, o := range r.Objects {
 		pos := v2v(o.Position)
 		scale := v2v(o.Scale)
