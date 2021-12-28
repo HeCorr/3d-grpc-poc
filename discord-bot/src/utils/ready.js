@@ -6,7 +6,7 @@ function nodeLogger() {
     `gRPC`, //header
     '500', // headerWidth
     'red', // headerColor
-    `Discord.js files by Phoenix#8033\n\ngRPC Generation by Nino#5624`, //body
+    `Discord.js files by Phoenix557\n\ngRPC Generation by HeCorr`, //body
     'disabled', // backgroundColor
     'blue', // borderColor
     'single', //borderStyle
