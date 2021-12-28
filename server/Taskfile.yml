@@ -18,6 +18,8 @@ tasks:
     cmds:
       - echo "Stopping server container if it's running..."
       - docker stop 3d-grpc-server
+      - echo "Removing server container if it exists..."
+      - docker rm 3d-grpc-server
   docker-deploy:
     cmds:
       - task: docker-stop

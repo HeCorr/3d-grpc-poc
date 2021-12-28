@@ -19,6 +19,8 @@ tasks:
     cmds:
       - echo "Stopping bot container if it's running..."
       - docker stop 3d-grpc-bot
+      - echo "Removing bot container if it exists..."
+      - docker rm 3d-grpc-bot
   docker-deploy:
     cmds:
       - task: docker-stop
