@@ -1,5 +1,5 @@
 # 3d-grpc-poc
-A POC of a Discord.js bot that sends 3D rendering instructions to a Go server through [gRPC](https://grpc.io/) which responds with the image bytes which are then sent back.
+A POC of a Discord.js bot that sends 3D rendering instructions to a Go server through [gRPC](https://grpc.io/) which responds with the image bytes which are then sent back on Discord.
 
 ## Project status
 It's pretty much working, but I'd like to clean up the code some more and add more features.
