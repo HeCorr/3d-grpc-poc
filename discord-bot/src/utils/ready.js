@@ -1,3 +1,4 @@
+// Prints a banner in console on startup
 function nodeLogger() {
     const nodelogger = require('hyperz-nodelogger')
     const logger = new nodelogger()

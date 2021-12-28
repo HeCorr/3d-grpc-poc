@@ -2,12 +2,14 @@ const validateRegex3 = /^[a-zA-z]+\([+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[
 const validateRegex6 = /^[a-zA-z]+\([+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+, ?[+-]?([0-9]*[.])?[0-9]+\);?/
 const parseRegex = /^(\w+)\((.*)\)/
 
+// validates instruction, throwing error if it's not valid
 function validateInstruction(inst, line) {
     if (!validateRegex3.test(inst) && !validateRegex6.test(inst)) {
         throw `Invalid instruction on line ${line}`
     }
 }
 
+// parses instruction into a grpc object
 function parseInstruction(inst) {
     const matches = parseRegex.exec(inst)
     const floatValues = matches[2].replace(/ +/, '').split(',')

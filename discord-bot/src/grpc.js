@@ -15,6 +15,7 @@ const packageDefinition = protoLoader.loadSync(
 const renderer = grpc.loadPackageDefinition(packageDefinition).render_server
 const client = new renderer.Renderer(process.env.ENV == 'docker' ? '3d-grpc-server:5656' : 'localhost:5656', grpc.credentials.createInsecure())
 
+// kinda obvious. this returns a promise
 function requestRender(objects) {
     return new Promise((resolve, reject) => {
         client.RequestRender({

@@ -3,9 +3,10 @@ const { requestRender } = require('./grpc.js')
 const { Client, Intents } = require('discord.js')
 const { validateInstruction, parseInstruction } = require('./parser.js')
 
+// Discord client
 const client = new Client({ intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES], partials: ['CHANNEL'] })
 
-// on bot ready, logs banner
+// on bot ready, prints banner in console
 client.on('ready', () => {
     nodeLogger()
 })
@@ -22,7 +23,8 @@ client.on('messageCreate', async (message) => {
     if (message.mentions.has(client.user.id) || message.channel.type == 'DM') {
         const msg = message.content.replace(/<@.*?>/gm, '').trim()
 
-        if (['', 'help'].includes(msg)/* message.content.trim().startsWith('<') && message.content.trim().endsWith('>') */) {
+        // check for empty or 'help' message
+        if (['', 'help'].includes(msg)) {
             if (message.channel.type == 'DM') {
                 await message.reply({ content: "Send me a list of shapes to draw with their position and scale, one on each line.\nSupported shapes: `cube`, `sphere`, `plane`, `cylinder`, `icosahedron`.\nSyntax: `shape(xPos, yPos, zPos)` or `shape(xPos, yPos, zPos, xScale, yScale, zScale)`.\nExample (cube with a cone on top):\n```cube(0, 0, 0)\ncone(0, 0, 1, 0.5, 0.5, 1)\n```" })
             } else {
@@ -31,14 +33,18 @@ client.on('messageCreate', async (message) => {
             return
         }
         try {
+            // extract instructions from message (one per line)
             const instructions = msg.split('\n')
             let instrQueue = []
 
             instructions.forEach((inst, i) => {
+                // ignore instructions starting with // or #
                 if (inst.startsWith("//") || inst.startsWith("#")) {
                     return
                 }
+                // if the instruction is invalid, this function throws.
                 validateInstruction(inst, i + 1)
+                // parse and push instruction to queue
                 instrQueue.push(parseInstruction(inst))
             })
 
@@ -63,7 +69,7 @@ client.on('messageCreate', async (message) => {
     }
 })
 
-// iinitialize bot
+// bot login
 client.login(process.env.DISCORD_BOT_TOKEN).catch(e => {
     console.log(`Failed to login: ${e}`)
 })
