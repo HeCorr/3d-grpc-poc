@@ -12,7 +12,9 @@ You can join my test server [here](https://discord.gg/bAbdu9p6rv) or invite the 
 
 ## Libraries used
 [Discord.js](https://discord.js.org/)
+
 [Node](https://grpc.io/docs/languages/node/)'s and [Go](https://grpc.io/docs/languages/go/)'s official gRPC/Protobuf libraries
+
 Fogleman's awesome [FauxGL renderer](https://github.com/fogleman/fauxgl)
 
 ## TODO's
