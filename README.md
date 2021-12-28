@@ -18,6 +18,6 @@ You can join my test server [here](https://discord.gg/bAbdu9p6rv) or invite the 
 Fogleman's awesome [FauxGL renderer](https://github.com/fogleman/fauxgl)
 
 ## TODO's
-- [ ] Improve the code, make it more readable
+- [x] Improve the code, make it more readable
 - [x] Dockerize the server and the bot
 - [x] Include render time in messages
