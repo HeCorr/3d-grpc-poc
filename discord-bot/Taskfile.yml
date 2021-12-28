@@ -13,7 +13,7 @@ tasks:
   docker-run:
     cmds:
       - echo "Starting bot container..."
-      - docker run --rm -tid --name 3d-grpc-bot --restart unless-stopped --network=3d-grpc-net --env-file=../.env 3d-grpc-bot
+      - docker run -tid --name 3d-grpc-bot --restart unless-stopped --network=3d-grpc-net --env-file=../.env 3d-grpc-bot
   docker-stop:
     ignore_error: true
     cmds:

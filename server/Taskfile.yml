@@ -12,7 +12,7 @@ tasks:
   docker-run:
     cmds:
       - echo "Starting server container..."
-      - docker run --rm -tid --name 3d-grpc-server --restart unless-stopped  --network=3d-grpc-net 3d-grpc-server
+      - docker run -tid --name 3d-grpc-server --restart unless-stopped --network=3d-grpc-net 3d-grpc-server
   docker-stop:
     ignore_error: true
     cmds:
