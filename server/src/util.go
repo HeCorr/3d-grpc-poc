@@ -17,16 +17,20 @@ func parseShape(shape string) (m f.Mesh) {
 	case "sphere", "ball":
 		m = *f.NewSphere(4)
 		m.SmoothNormals()
+		m.Transform(f.Scale(f.V(.5, .5, .5)))
 	case "cylinder", "cilinder":
 		m = *f.NewCylinder(4, true)
 		m.SmoothNormalsThreshold(1)
+		m.Transform(f.Scale(f.V(.5, .5, 1)))
 	case "cone":
 		m = *f.NewCone(4, true)
 		m.SmoothNormalsThreshold(1)
+		m.Transform(f.Scale(f.V(.5, .5, 1)))
 	case "plane":
 		m = *f.NewPlane()
 	case "icosahedron", "ico", "icosphere":
 		m = *f.NewIcosahedron()
+		m.Transform(f.Scale(f.V(.5, .5, .5)))
 	}
 	return m
 }
